@@ -1,6 +1,11 @@
 <?php
 require_once "pdo.php";
 session_start();
+if(isset($_SESSION['username'])){
+    $_SESSION['message']="Welcome, ".$_SESSION['username'];
+    header('Location: home.php');
+    return;
+}
 if(isset($_POST['un']) && isset($_POST['ps'])){
     $stmt=$pdo->query('select userid,password,firstname from users');
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){

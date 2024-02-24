@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-        #addNote{
+        .btn{
             text-decoration: none;
             color: black;
         }
@@ -20,7 +20,8 @@ session_start();
 </head>
 <body>
     <h2><?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; unset($_SESSION['message']); }?></h2>
-    <button><a id="addNote" href="addNote.php">Add New Note</a></button>
+    <button><a class="btn" href="addNote.php">Add New Note</a></button>&nbsp;
+    <button><a class="btn" href="logout.php">Logout</a></button>
     <?php
     $un=$_SESSION['username'];
     $sql="select * from $un";
@@ -38,5 +39,6 @@ session_start();
             echo '</div></div>';
         }
         ?>
+    </div>
 </body>
 </html>

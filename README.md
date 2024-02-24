@@ -1,0 +1,1 @@
+#This is a web application in process where a user get to write note, diary or whatever the user wants.

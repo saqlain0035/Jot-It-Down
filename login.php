@@ -11,13 +11,13 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
                 return;
             }
             else{
-                $_SESSION['message']="Wrong Password...";
+                $_SESSION['error']="Wrong Password...";
                 header('Location: login.php');
                 return;
             }
         }
     }
-    $_SESSION['message']="Wrong Username...";
+    $_SESSION['error']="Wrong Username...";
     header('Location: login.php');
     return;
 }
@@ -38,9 +38,13 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
 <body>
     <h2>Please enter your credentials</h2>
     <?php
-    if(isset($_SESSION['message'])){
-        echo '<p style="color: red">'.$_SESSION['message'].'</p>';
-        unset($_SESSION['message']);
+    if(isset($_SESSION['error'])){
+        echo '<p style="color: red">'.$_SESSION['error'].'</p>';
+        unset($_SESSION['error']);
+    }
+    if(isset($_SESSION['success'])){
+        echo '<p style="color: green">'.$_SESSION['success'].'</p>';
+        unset($_SESSION['success']);
     }
     ?>
     <form action="" method="post">

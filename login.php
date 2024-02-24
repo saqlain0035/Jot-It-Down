@@ -7,6 +7,7 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
         if($row['userid']==$_POST['un']){
             if($row['password']==$_POST['ps']){
                 $_SESSION['message']="Welcome, ".$row['firstname'];
+                $_SESSION['username']=$_POST['un'];
                 header('Location: home.php');
                 return;
             }

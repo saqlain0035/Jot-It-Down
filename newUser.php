@@ -11,7 +11,7 @@ if(isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($
     $stmt->execute(array($_POST['un'],$_POST['fn'],$_POST['ln'],$_POST['ps1'],$_POST['em']));
     $_SESSION['success']="User registered sucessfully, now login...";
     $u=$_POST['un'];
-    $sql="create table $u (timing datetime, title varchar(128), content text)";
+    $sql="create table $u (id int auto_increment key, timing datetime, title varchar(128), content text)";
     $pdo->query($sql);
     header('Location: login.php');
     return;

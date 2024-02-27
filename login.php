@@ -18,6 +18,7 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
             }
             else{
                 $_SESSION['error']="Wrong Password...";
+                $_SESSION['unfield']=$_POST['un'];
                 header('Location: login.php');
                 return;
             }
@@ -52,9 +53,16 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
         echo '<p style="color: green">'.$_SESSION['success'].'</p>';
         unset($_SESSION['success']);
     }
+    if(isset($_SESSION['unfield'])){
+        $un=$_SESSION['unfield'];
+        unset($_SESSION['unfield']);
+    }
+    else{
+        $un='';
+    }
     ?>
     <form action="" method="post">
-        <p>Username: <input type="text" name="un"></p>
+        <p>Username: <input type="text" name="un" value="<?= $un ?>"></p>
         <p>Password: <input type="password" name="ps"></p>
         <p><input type="submit">&nbsp;<button><a id="newUser" href="newUser.php">New User</a></button></p>
     </form>

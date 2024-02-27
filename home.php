@@ -29,9 +29,9 @@ session_start();
     ?>
     <div class="cardcont">
         <?php
-        while($stmt->fetch(PDO::FETCH_ASSOC)){
+        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<div class="card">';
-            echo '<p>'.$row['timing'].'</p>';
+            echo '<p>&nbsp;'.$row['timing'].'</p>';
             echo '<div class="card-text">';
             echo '<h3>'.$row['title'].'</h3>';
             echo '<p>'.$row['content'].'</p>';

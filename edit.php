@@ -1,15 +1,26 @@
 <?php
 require_once "pdo.php";
 session_start();
-
 $un=$_SESSION['username'];
+
+if(isset($_POST['title']) && isset($_POST['content'])){
+    $sql="update $un set title=:t, content=:c where id=:i";
+    $stmt=$pdo->prepare($sql);
+    $stmt->execute(array(
+        ':t'=>$_POST['title'],
+        ':c'=>$_POST['content'],
+        ':i'=>$_GET['userid']
+    ));
+    $_SESSION['message2']="Note updated successfully...";
+    header('Location: home.php');
+    return;
+}
 $sql="select * from $un where id=?";
 $stmt=$pdo->prepare($sql);
 $stmt->execute(array($_GET['userid']));
 $row=$stmt->fetch(PDO::FETCH_ASSOC);
 $tit=$row['title'];
 $con=$row['content'];
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

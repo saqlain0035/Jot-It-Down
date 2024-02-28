@@ -39,12 +39,12 @@ session_start();
         <?php
         while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<div class="card">';
-            echo '<p class="timedel">&nbsp;'.$row['timing'];
+            echo '<p class="timedel">'.$row['timing'];
             echo '<button><a class="btn" href="delete.php?userid='.$row['id'].'">Del</a></button></p>';
             echo '<div class="card-text">';
             echo '<h3>'.$row['title'].'</h3>';
             echo '<p>'.$row['content'].'</p>';
-            echo '<a class="cardlink" href="edit.php?id='.$row['id'].'">Edit</a>';
+            echo '<a class="cardlink" href="edit.php?userid='.$row['id'].'">Edit</a>';
             echo '</div></div>';
         }
         ?>

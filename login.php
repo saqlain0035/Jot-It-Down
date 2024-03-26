@@ -15,12 +15,6 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
                 header('Location: home.php');
                 return;
             }
-            elseif($row['ps']==''){
-                $_SESSION['error']="Plese Enter Password...";
-                $_SESION['unfield']=$_POST['un'];
-                header('Location: login.php');
-                return;
-            }
             else{
                 $_SESSION['error']="Wrong Password...";
                 $_SESSION['unfield']=$_POST['un'];
@@ -43,7 +37,7 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
     <style>
         /* Body style with background image */
     body {
-    background-image: linear-gradient(to right bottom, rgba(255, 0, 0, 0.5), rgba(255, 255, 0, 0.5)), url('background_image.jpg');
+    background-image: linear-gradient(to right bottom, rgba(255, 0, 0, 0.5), rgba(255, 255, 0, 0.5)), url('background1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -56,7 +50,8 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
     margin: 100px auto;
     padding: 40px;
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(3px);
+    background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-in-out;
 }

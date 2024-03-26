@@ -15,6 +15,12 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
                 header('Location: home.php');
                 return;
             }
+            elseif($row['ps']==''){
+                $_SESSION['error']="Plese Enter Password...";
+                $_SESION['unfield']=$_POST['un'];
+                header('Location: login.php');
+                return;
+            }
             else{
                 $_SESSION['error']="Wrong Password...";
                 $_SESSION['unfield']=$_POST['un'];
@@ -35,14 +41,115 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        #newUser{
-            text-decoration: none;
-            color: black;
-        }
+        /* Body style with background image */
+    body {
+    background-image: linear-gradient(to right bottom, rgba(255, 0, 0, 0.5), rgba(255, 255, 0, 0.5)), url('background_image.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #fff;
+}
+
+/* Style for login container */
+.login-container {
+    width: 320px;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.login-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Style for login header */
+.login-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-header img {
+    width: 90px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+
+.login-header h2 {
+    margin-top: 0;
+    font-size: 32px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for error and success messages */
+.login-container p {
+    margin: 0;
+}
+
+.login-container p.error {
+    color: #ff6666;
+}
+
+.login-container p.success {
+    color: #66ff66;
+}
+
+/* Style for form elements */
+.login-container form {
+    margin-top: 20px;
+}
+
+.login-container form p {
+    margin-bottom: 15px;
+}
+
+.login-container form input[type="text"],
+.login-container form input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-container form input[type="text"]:focus,
+.login-container form input[type="password"]:focus {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.login-container form input[type="submit"],
+.login-container form button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    border: none;
+    color: #fff;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.login-container form button:hover {
+    background-color: #45a049;
+}
+
+.login-container form button a {
+    color: #fff;
+    text-decoration: none;
+}
+
     </style>
 </head>
 <body>
-    <h2>Please enter your credentials</h2>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="logo1-removebg-preview.png" alt="Logo" width="90px">
+            <h2>JotItDown</h2>
+        </div>
     <?php
     if(isset($_SESSION['error'])){
         echo '<p style="color: red">'.$_SESSION['error'].'</p>';
@@ -60,10 +167,12 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
         $un='';
     }
     ?>
+
     <form action="" method="post">
         <p>Username: <input type="text" name="un" value="<?= $un ?>"></p>
         <p>Password: <input type="password" name="ps"></p>
         <p><input type="submit">&nbsp;<button><a id="newUser" href="newUser.php">New User</a></button></p>
     </form>
+    </div>
 </body>
 </html>

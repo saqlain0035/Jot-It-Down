@@ -18,13 +18,13 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
             else{
                 $_SESSION['error']="Wrong Password...";
                 $_SESSION['unfield']=$_POST['un'];
-                header('Location: login.php');
+                header('Location: index.php');
                 return;
             }
         }
     }
     $_SESSION['error']="Wrong Username...";
-    header('Location: login.php');
+    header('Location: index.php');
     return;
 }
 ?>

@@ -13,7 +13,7 @@ if(isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($
     $u=$_POST['un'];
     $sql="create table $u (id int auto_increment key, timing datetime, title varchar(128), content text)";
     $pdo->query($sql);
-    header('Location: login.php');
+    header('Location: index.php');
     return;
 }
 ?>

@@ -21,9 +21,10 @@ session_start();
         }
         body{
             background: url(background1.jpg);
-            background-position: center;
+            /* background-position: center; */
             background-size: cover;
             background-repeat: no-repeat;
+            height: 100%;
         }
 .card {
 position: relative;

@@ -1,11 +1,48 @@
 <?php
 require_once "pdo.php";
 session_start();
-if(isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($_POST['ps2']) && isset($_POST['em'])){
+if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($_POST['ps2']) && isset($_POST['em'])){
+    $_SESSION['username']=$_POST['un'];
+    $_SESSION['firstname']=$_POST['fn'];
+    $_SESSION['lastname']=$_POST['ln'];
+    $_SESSION['email']=$_POST['em'];
+    if($_POST['un']==''){
+        $_SESSION['error']="Please enter Username...";
+        header('Location: newUser.php');
+        return;
+    }
+    if($_POST['fn']==''){
+        $_SESSION['error']="Please enter First Name...";
+        header('Location: newUser.php');
+        return;
+    }
+    if($_POST['ps1']==''){
+        $_SESSION['error']="Please enter Password...";
+        header('Location: newUser.php');
+        return;
+    }
+    if($_POST['em']==''){
+        $_SESSION['error']="Please enter Email...";
+        header('Location: newUser.php');
+        return;
+    }
     if($_POST['ps1'] !== $_POST['ps2']){
         $_SESSION['error']="Your password doesn't match...";
         header('Location: newUser.php');
         return;
+    }
+    $stm=$pdo->query('select userid,email from users');
+    while($row=$stm->fetch(PDO::FETCH_ASSOC)){
+        if($_POST['un']==$row['userid']){
+            $_SESSION['error']="Username already exist...";
+            header('Location: newUser.php');
+            return;
+        }
+        if($_POST['em']==$row['email']){
+            $_SESSION['error']="Email already exist...";
+            header('Location: newUser.php');
+            return;
+        }
     }
     $stmt=$pdo->prepare('insert into users values (?,?,?,?,?)');
     $stmt->execute(array($_POST['un'],$_POST['fn'],$_POST['ln'],$_POST['ps1'],$_POST['em']));
@@ -13,6 +50,10 @@ if(isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($
     $u=$_POST['un'];
     $sql="create table $u (id int auto_increment key, timing datetime, title varchar(128), content text)";
     $pdo->query($sql);
+    unset($_SESSION['username']);
+    unset($_SESSION['firstname']);
+    unset($_SESSION['lastname']);
+    unset($_SESSION['email']);
     header('Location: index.php');
     return;
 }
@@ -118,15 +159,43 @@ if(isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($
         echo '<p style="color:red";>'.$_SESSION['error'].'</p>';
         unset($_SESSION['error']);
     }
+    if(isset($_SESSION['username'])){
+        $un=$_SESSION['username'];
+        unset($_SESSION['username']);
+    }
+    else{
+        $un='';
+    }
+    if(isset($_SESSION['firstname'])){
+        $f=$_SESSION['firstname'];
+        unset($_SESSION['firstname']);
+    }
+    else{
+        $f='';
+    }
+    if(isset($_SESSION['lastname'])){
+        $l=$_SESSION['lastname'];
+        unset($_SESSION['lastname']);
+    }
+    else{
+        $l='';
+    }
+    if(isset($_SESSION['email'])){
+        $e=$_SESSION['email'];
+        unset($_SESSION['email']);
+    }
+    else{
+        $e='';
+    }
     ?>
     <form action="" method="post">
-        <p>Username: <input type="text" name="un"></p>
-        <p>First name: <input type="text" name="fn"></p>
-        <p>Last name: <input type="text" name="ln"></p>
+        <p>Username: <input type="text" name="un" value="<?= $un ?>"></p>
+        <p>First name: <input type="text" name="fn" value="<?= $f ?>"></p>
+        <p>Last name: <input type="text" name="ln" value="<?= $l ?>"></p>
         <p>Password: <input type="password" name="ps1"></p>
         <p>Password again: <input type="password" name="ps2"></p>
-        <p>Email: <input type="email" name="em"></p>
-        <p><input type="submit"></p>
+        <p>Email: <input type="email" name="em" value="<?= $e ?>"></p>
+        <p><input type="submit" name="submit"></p>
     </form>
     </div>
 </body>

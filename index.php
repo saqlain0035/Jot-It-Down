@@ -5,7 +5,18 @@ if(isset($_SESSION['username'])){
     header('Location: home.php');
     return;
 }
-if(isset($_POST['un']) && isset($_POST['ps'])){
+if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['ps'])){
+    if($_POST['un']==''){
+        $_SESSION['error']="Please enter Username...";
+        header('Location: index.php');
+        return;
+    }
+    if($_POST['ps']==''){
+        $_SESSION['error']="Please enter Password...";
+        $_SESSION['unfield']=$_POST['un'];
+        header('Location: index.php');
+        return;
+    }
     $stmt=$pdo->query('select userid,password,firstname from users');
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
         if($row['userid']==$_POST['un']){
@@ -166,7 +177,7 @@ if(isset($_POST['un']) && isset($_POST['ps'])){
     <form action="" method="post">
         <p>Username: <input type="text" name="un" value="<?= $un ?>"></p>
         <p>Password: <input type="password" name="ps"></p>
-        <p><input type="submit">&nbsp;<button><a id="newUser" href="newUser.php">New User</a></button></p>
+        <p><input type="submit" name="submit">&nbsp;<button><a id="newUser" href="newUser.php">New User</a></button></p>
     </form>
     </div>
 </body>

@@ -83,7 +83,7 @@ text-align: center;
 .card-text h3{
 margin: 10px 0;
 }
-.btn{
+.btnn{
     width: 20px;
     height: 20px;
     
@@ -100,6 +100,30 @@ gap: 20px;
 .side a{
 text-decoration:none;
 }
+.btn {
+        text-decoration: none;
+        color: white;
+        background-color: rgb(66, 184, 172, 0.75);
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin-right: 10px;
+        transition: all 0.2s ease-in-out;
+    }
+.btn a{
+    text-decoration: none;
+    color: white;
+}
+    .btn:hover {
+        background-color: rgb(66, 184, 172, 0.9);
+    }
+
+    .logout-btn {
+        background-color: #ff4136; /* Change color to red */
+    }
+    .logout-btn:hover{
+        background-color: red;
+    }
 .btngroup{
     display: flex;
     align-items: center;
@@ -116,15 +140,17 @@ margin-left: 1200px;
 <body>
     <h2><?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; unset($_SESSION['message']); }?></h2>
     <div class="btngroup">
-        <img class="logo" src="logo1-removebg-preview.png" alt="">
-        <div class="group">
-        <button><a class="btn" href="addNote.php">Add New Note</a></button>&nbsp;
-    <button><a class="btn" href="logout.php">Logout</a></button>
-        </div>
+    <img class="logo" src="logo1-removebg-preview.png" alt="">
+    <div class="group">
+        <button class="btn"><a href="addNote.php">Add New Note</a></button>
+        <button class="btn logout-btn"><a href="logout.php">Logout</a></button>
+    </div>
+</div>
+
     
 
     </div>
-    
+
     <?php
     if(isset($_SESSION['message2'])){
         echo '<p style="color: green;">'.$_SESSION['message2'].'</p>';
@@ -140,7 +166,7 @@ margin-left: 1200px;
         while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<div class="card">';
             echo '<p class="timedel">'.$row['timing'];
-            echo '<a class="btn" href="delete.php?userid='.$row['id'].'"><img src="delete.png" alt="D"></a></p>';
+            echo '<a class="btnn" href="delete.php?userid='.$row['id'].'"><img src="delete.png" alt="D"></a></p>';
             echo '<div class="card-text">';
             echo '<h3>'.$row['title'].'</h3>';
             echo '<p>'.$row['content'].'</p>';

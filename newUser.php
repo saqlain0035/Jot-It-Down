@@ -65,6 +65,9 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New User</title>
     <style>
+        button a{
+            text-decoration: none;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
@@ -74,24 +77,43 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: auto;
+
+            background-image: linear-gradient(to right bottom, rgba(255, 0, 0, 0.5), rgba(255, 255, 0, 0.5)), url('background1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
         }
 
         .container {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
+            padding: 0px 30px;
             max-width: 400px;
             width: 90%;
             text-align: center;
             height: 100vh;
             margin-top: 10px;
+
+            border-radius: 10px;
+            backdrop-filter: blur(3px);
+            background-color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .container:hover{
+            transform: translateY(-5px);
         }
 
         h2 {
-            color: #333;
+            margin-left: 10px;
             font-size: 20px;
             margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         input[type="text"],
@@ -123,6 +145,22 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
             background-color: #45a049;
         }
 
+        button{
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover{
+            background-color: #45a049;
+        }
+
         .error-message {
             color: red;
             margin-top: 10px;
@@ -135,7 +173,8 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
 }
 
 .login-header img {
-    width: 90px;
+    margin-top: 5px;
+    width: 80px;
     border-radius: 50%;
     border: 2px solid #fff;
 }
@@ -146,6 +185,17 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
     letter-spacing: 2px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-container input[type="submit"],
+.button-container button {
+    flex: 1;
+}
+
     </style>
 </head>
 <body>
@@ -195,7 +245,11 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
         <p>Password: <input type="password" name="ps1"></p>
         <p>Password again: <input type="password" name="ps2"></p>
         <p>Email: <input type="email" name="em" value="<?= $e ?>"></p>
-        <p><input type="submit" name="submit"></p>
+        <p class="button-container">
+            <input type="submit" name="submit">&nbsp;&nbsp;
+            <button type="button"><a href="index.php"><font color="white">Login</font></a></button>
+        </p>
+
     </form>
     </div>
 </body>

@@ -18,7 +18,7 @@ if(isset($_POST['submit']) && isset($_POST['title']) && isset($_POST['content'])
     $sql="insert into $u (timing,title,content) values (now(),?,?)";
     $stmt=$pdo->prepare($sql);
     $stmt->execute(array($_POST['title'],$_POST['content']));
-    $_SESSION['message2']="Note inserted sucessfully...";
+    $_SESSION['message2']="Note inserted successfully...";
     header('Location: home.php');
     return;
 }
@@ -30,18 +30,56 @@ if(isset($_POST['submit']) && isset($_POST['title']) && isset($_POST['content'])
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adding Notes</title>
     <style>
+        /* Import styles from the home page */
         .btn{
             text-decoration: none;
             color: black;
         }
-        
+        body{
+            background: url(background1.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+        }
+        h2{
+            color: white;
+        }
+        p{
+            color: white;
+        }
+        textarea, input[type="text"], input[type="submit"]{
+            background: rgb(0,0,0,0.75);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 5px;
+            margin: 5px;
+        }
+        input[type="submit"], button{
+            padding: 10px 20px;
+            background: rgb(66, 184, 172,0.75);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        input[type="submit"]:hover, button:hover{
+            background: rgb(66, 184, 172,0.9);
+        }
+        a.btn{
+            color: white;
+        }
+        a.btn:hover{
+            color: black;
+        }
     </style>
 </head>
 <body>
     <h2>Add new Note</h2>
     <?php
     if(isset($_SESSION['error'])){
-        echo '<p style="color:red";>'.$_SESSION['error'].'</p>';
+        echo '<p>'.$_SESSION['error'].'</p>';
         unset($_SESSION['error']);
     }
     if(isset($_SESSION['titl'])){

@@ -134,17 +134,19 @@ margin-left: 1200px;
 .logo{
     width: 80px;
 }
-
+h2{
+    margin-left: 250px;
+}
     </style>
 </head>
 <body>
-    <h2><?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; unset($_SESSION['message']); }?></h2>
     <div class="btngroup">
     <img class="logo" src="logo1-removebg-preview.png" alt="">
     <div class="group">
         <button class="btn"><a href="addNote.php">Add New Note</a></button>
         <button class="btn logout-btn"><a href="logout.php">Logout</a></button>
     </div>
+    <h2><?php if(isset($_SESSION['message'])){ echo $_SESSION['message']; unset($_SESSION['message']); }?></h2>
 </div>
 
     

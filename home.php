@@ -24,7 +24,7 @@ session_start();
             /* background-position: center; */
             background-size: cover;
             background-repeat: no-repeat;
-            height: 100%;
+            height: 100vh;
         }
 .card {
 position: relative;
@@ -32,7 +32,6 @@ line-height: 24px;
 width: 400px;
 height: auto;
 padding-bottom: 20px;
-
 border-radius: 5px;
 background: rgb(0,0,0,0.75);
 color: white;
@@ -186,7 +185,7 @@ h2{
         unset($_SESSION['message2']);
     }
     $un=$_SESSION['username'];
-    $sql="select * from $un";
+    $sql="select * from $un order by timing desc";
     $stmt=$pdo->query($sql);
     ?>
     <div class="cardcont">

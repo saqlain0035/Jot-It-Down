@@ -24,6 +24,7 @@ session_start();
             /* background-position: center; */
             background-size: cover;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             height: 100vh;
         }
 .card {
@@ -81,6 +82,9 @@ text-align: center;
 
 .card-text h3{
 margin: 10px 0;
+}
+.card-text p{
+    overflow: auto;
 }
 .btnn{
     width: 20px;

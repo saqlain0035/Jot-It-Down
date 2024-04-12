@@ -73,12 +73,14 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
             background-color: #f0f0f0;
             margin-top: 10px;
             padding: 0;
-            margin-left: 30%;
+            /* margin-left: 30%; */
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: auto;
-
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-image: linear-gradient(to right bottom, rgba(255, 0, 0, 0.5), rgba(255, 255, 0, 0.5)), url('background1.jpg');
             background-size: cover;
             background-repeat: no-repeat;
@@ -91,8 +93,8 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
             border-radius: 8px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             padding: 0px 30px;
-            max-width: 400px;
-            width: 90%;
+            max-width: 90vw;
+            width: 400px;
             text-align: center;
             height: 100vh;
             margin-top: 10px;
@@ -195,6 +197,44 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
 .button-container button {
     flex: 1;
 }
+/* CSS for mobile devices */
+@media screen and (max-width: 480px) {
+    .container {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .login-header img {
+        width: 70px;
+        margin-top: 0;
+    }
+
+    .login-header h2 {
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        width: calc(100% - 20px);
+        margin-bottom: 15px;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .button-container input[type="submit"],
+    .button-container button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
 
     </style>
 </head>

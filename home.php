@@ -137,6 +137,33 @@ margin-left: 1200px;
 h2{
     margin-left: 250px;
 }
+/* CSS for mobile devices */
+@media screen and (max-width: 768px) {
+    .btngroup {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .cardcont {
+        padding: 20px;
+    }
+
+    .card {
+        width: 90%;
+        margin: 0 auto 20px;
+    }
+
+    h2 {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
     </style>
 </head>
 <body>

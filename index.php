@@ -51,6 +51,10 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['ps'])){
     background-image: linear-gradient(to right bottom, rgba(255, 0, 0, 0.5), rgba(255, 255, 0, 0.5)), url('background1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #fff;
 }
@@ -147,6 +151,41 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['ps'])){
     color: #fff;
     text-decoration: none;
 }
+/* CSS for mobile devices */
+@media screen and (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .login-header img {
+        width: 70px;
+    }
+
+    .login-header h2 {
+        font-size: 24px;
+    }
+
+    .login-container form input[type="text"],
+    .login-container form input[type="password"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .login-container form input[type="submit"],
+    .login-container form button {
+        padding: 10px 16px;
+        font-size: 14px;
+        border-radius: 20px;
+    }
+
+    .login-container form button a {
+        font-size: 14px;
+    }
+}
+
 
     </style>
 </head>

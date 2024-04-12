@@ -39,10 +39,20 @@ if(isset($_POST['submit']) && isset($_POST['title']) && isset($_POST['content'])
             background: url(background1.jpg);
             background-size: cover;
             background-repeat: no-repeat;
-            height: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         h2{
             color: white;
+            background: rgb(0,0,0,0.75);
+            backdrop-filter: blur(3px);
+            padding: 10px;
+            width: 33%;
+            text-align: center;
+            border-radius: 10px;
         }
         p{
             color: white;
@@ -73,6 +83,29 @@ if(isset($_POST['submit']) && isset($_POST['title']) && isset($_POST['content'])
         a.btn:hover{
             color: black;
         }
+        /* CSS for mobile devices */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    h2, p {
+        text-align: center;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="submit"],
+    button {
+        width: 90%;
+        margin: 10px auto;
+    }
+
+    textarea {
+        resize: vertical; /* Allow vertical resizing */
+    }
+}
+
     </style>
 </head>
 <body>

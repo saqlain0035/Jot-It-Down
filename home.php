@@ -193,7 +193,9 @@ h2{
         <?php
         while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<div class="card">';
-            echo '<p class="timedel">'.$row['timing'];
+            $datetime=new DateTime($row['timing']);
+            $formated=$datetime->format('d M Y, D h:i a');
+            echo '<p class="timedel">'.$formated;
             echo '<a class="btnn" href="delete.php?userid='.$row['id'].'"><img src="delete.png" alt="D"></a></p>';
             echo '<div class="card-text">';
             echo '<h3>'.$row['title'].'</h3>';

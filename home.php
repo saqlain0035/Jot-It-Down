@@ -198,6 +198,7 @@ h2{
         while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<div class="card">';
             $datetime=new DateTime($row['timing']);
+            $datetime->modify('+5 hours +30 minutes');
             $formated=$datetime->format('d M Y, D h:i a');
             echo '<p class="timedel">'.$formated;
             echo '<a class="btnn" href="delete.php?userid='.$row['id'].'"><img src="delete.png" alt="D"></a></p>';

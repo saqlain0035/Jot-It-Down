@@ -1,31 +1,31 @@
 <?php
 require_once "pdo.php";
 session_start();
-if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ps1']) && isset($_POST['ps2']) && isset($_POST['em'])){
+if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isset($_POST['ln']) && isset($_POST['ps1']) && isset($_POST['ps2']) && isset($_POST['em'])){
     $_SESSION['username']=$_POST['un'];
     $_SESSION['firstname']=$_POST['fn'];
     $_SESSION['lastname']=$_POST['ln'];
     $_SESSION['email']=$_POST['em'];
-    if($_POST['un']==''){
-        $_SESSION['error']="Please enter Username...";
-        header('Location: newUser.php');
-        return;
-    }
-    if($_POST['fn']==''){
-        $_SESSION['error']="Please enter First Name...";
-        header('Location: newUser.php');
-        return;
-    }
-    if($_POST['ps1']==''){
-        $_SESSION['error']="Please enter Password...";
-        header('Location: newUser.php');
-        return;
-    }
-    if($_POST['em']==''){
-        $_SESSION['error']="Please enter Email...";
-        header('Location: newUser.php');
-        return;
-    }
+    // if($_POST['un']==''){
+    //     $_SESSION['error']="Please enter Username...";
+    //     header('Location: newUser.php');
+    //     return;
+    // }
+    // if($_POST['fn']==''){
+    //     $_SESSION['error']="Please enter First Name...";
+    //     header('Location: newUser.php');
+    //     return;
+    // }
+    // if($_POST['ps1']==''){
+    //     $_SESSION['error']="Please enter Password...";
+    //     header('Location: newUser.php');
+    //     return;
+    // }
+    // if($_POST['em']==''){
+    //     $_SESSION['error']="Please enter Email...";
+    //     header('Location: newUser.php');
+    //     return;
+    // }
     if($_POST['ps1'] !== $_POST['ps2']){
         $_SESSION['error']="Your password doesn't match...";
         header('Location: newUser.php');
@@ -279,12 +279,12 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['fn']) && isse
     }
     ?>
     <form action="" method="post">
-        <p>Username: <input type="text" name="un" value="<?= $un ?>"></p>
-        <p>First name: <input type="text" name="fn" value="<?= $f ?>"></p>
-        <p>Last name: <input type="text" name="ln" value="<?= $l ?>"></p>
-        <p>Password: <input type="password" name="ps1"></p>
-        <p>Password again: <input type="password" name="ps2"></p>
-        <p>Email: <input type="email" name="em" value="<?= $e ?>"></p>
+        <p>Username: <input type="text" name="un" pattern="[a-zA-Z0-9_]+" title="Username can only contain letters, numbers, and underscores." value="<?= $un ?>" required></p>
+        <p>First name: <input type="text" name="fn" pattern="[a-zA-Z]+" title="Your name can only contain letters." value="<?= $f ?>" required></p>
+        <p>Last name: <input type="text" name="ln" pattern="[a-zA-Z]+" title="Your name can only contain letters." value="<?= $l ?>"></p>
+        <p>Password: <input type="password" name="ps1" required></p>
+        <p>Password again: <input type="password" name="ps2" required></p>
+        <p>Email: <input type="email" name="em" value="<?= $e ?>" required></p>
         <p class="button-container">
             <input type="submit" name="submit">&nbsp;&nbsp;
             <button type="button"><a href="index.php"><font color="white">Login</font></a></button>

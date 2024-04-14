@@ -143,7 +143,8 @@ if(isset($_POST['submit']) && isset($_POST['un']) && isset($_POST['ps'])){
     transition: background-color 0.3s ease-in-out;
 }
 
-.login-container form button:hover {
+.login-container form button:hover,
+.login-container form input[type="submit"]:hover {
     background-color: #45a049;
 }
 
